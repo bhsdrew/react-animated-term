@@ -66,7 +66,14 @@ var Terminal = function Terminal(_ref) {
       height = _ref.height,
       code = _ref.code,
       onReplay = _ref.onReplay,
-      completed = _ref.completed;
+      completed = _ref.completed,
+      onComplete = _ref.onComplete;
+
+  React.useEffect(function () {
+    if (completed) {
+      onComplete();
+    }
+  }, [completed]);
 
   var btnClassName = white ? 'Terminal-control-btn Terminal-control-btn-white' : 'Terminal-control-btn';
 
@@ -124,6 +131,7 @@ Terminal.propTypes = {
   height: PropTypes.number,
   code: PropTypes.bool,
   onReplay: PropTypes.func,
+  onComplete: PropTypes.func,
   completed: PropTypes.bool
 };
 
