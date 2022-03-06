@@ -21,7 +21,7 @@ class Renderer extends React.Component {
       })
       if (done) {
         clearInterval(this.timer)
-        props.onComplete();
+        this.props.onComplete();
         this.setState({
           completed: true,
         })
