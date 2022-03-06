@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 
@@ -56,7 +56,13 @@ const getConsoleStyle = (code, white) => {
   })
 }
 
-const Terminal = ({ children, white, height, code, onReplay, completed }) => {
+const Terminal = ({ children, white, height, code, onReplay, completed, onComplete }) => {
+  React.useEffect(() => {
+    if(completed){
+      onComplete();
+    }
+  }, [completed]);
+  
   const btnClassName = white
     ? 'Terminal-control-btn Terminal-control-btn-white'
     : 'Terminal-control-btn'
@@ -99,6 +105,7 @@ Terminal.propTypes = {
   height: PropTypes.number,
   code: PropTypes.bool,
   onReplay: PropTypes.func,
+  onComplete: PropTypes.func,
   completed: PropTypes.bool,
 }
 
